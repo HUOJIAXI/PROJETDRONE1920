@@ -3,10 +3,13 @@ import cv2
 
 img = cv2.imread('/Users/huojiaxi/Desktop/googlelogo_color_272x92dp.png') 
 
-vert = [45, 165, 65] # RGB de la couleur végétale, il est nécessaire de la régler lors que la première figure sera générée
-diff = 20 
-boundaries = [([vert[2]-diff, vert[1]-diff, vert[0]-diff], 
-       [vert[2]+diff, vert[1]+diff, vert[0]+diff])] 
+vert = [70, 110, 40] # RGB de la couleur végétale, il est nécessaire de la régler lors que la première figure sera générée
+diff_rouge = 60
+diff_vert = 40
+diff_bleu = 30
+
+boundaries = [([vert[2]-diff_bleu, vert[1]-diff_vert, vert[0]-diff_rouge],
+       [vert[2]+diff_bleu, vert[1]+diff_vert, vert[0]+diff_rouge])]
 # Seuil
 
 for (lower, upper) in boundaries: 
