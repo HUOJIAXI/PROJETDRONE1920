@@ -5,7 +5,11 @@ Les scripts concernant:
 2. Capteur couvert végétale: Caméra 
 3. Capteur pollution lumnineuse: TSL
 4. Capteur pollution d'air: aqi.py.1
-5. Script python pour détecter le pourcentage de couvert végétal
+5. 2 scripts python pour détecter le pourcentage de couvert végétal sous le dossier TraitementDImage
+
+image_split.py détecter mieux la couverture végétale que image.py.
+
+Je préfère appliquer le image_split.py afin de détecter la couverture végétale...Le resultat de test: resultat_couvert_vegetale.png
 
 Les données sont bien stockées dans la base de données...
 
