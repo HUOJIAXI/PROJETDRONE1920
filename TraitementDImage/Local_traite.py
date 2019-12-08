@@ -3,15 +3,20 @@
 from __future__ import division
 import cv2
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from PIL import Image
+import sys
+import datetime
+from time import sleep
+import MySQLdb
  
-#src = cv2.imread('/Users/huojiaxi/Desktop/Unknown.jpeg')
+#src = cv2.imread('/home/pi/projetdronetech/TraitementDImage/images-6.jpeg')
 cap = cv2.VideoCapture(0)
 ret, src = cap.read(0)
 #print (ret)
 #cv2.imwrite("./photo.png", src)
-cv2.imshow('src', src) 
+#cv2.imshow('src', src) 
+cv2.imwrite('Couvervegetal.jpg', src)
  
 fsrc = np.array(src, dtype=np.float32) / 255.0
 (b,g,r) = cv2.split(fsrc)
@@ -33,7 +38,9 @@ gray_u8 = np.array((gray - minVal) / (maxVal - minVal) * 255, dtype=np.uint8)
 #image=cv2.cvtColor(bin_img, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBlur(bin_img,(5,5),0) 
 ret3,th3 = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU) 
-cv2.imshow('image', th3)
+#cv2.imshow('image', th3)
+cv2.imwrite('Couvervegetal_bin.jpg', th3)
+
   # a = cv2.waitKey(0)
   # print a
 area = 0
@@ -50,6 +57,22 @@ for i in range(height):
 
 print('Couverture végétale:', np.round(area/(height*width)*100, 3),'%') 
 
+m = np.round(area/(height*width)*100, 3)
+
 #print('Couverture végétale:', area/(height*width)*100,'%') 
+
+conn = MySQLdb.connect(
+host = '127.0.0.1',
+port = 3306,
+user = 'pi',
+passwd = 'projet2019',
+db = 'PROJETDRONE'
+)
+
+cur = conn.cursor()
+cur.execute("insert into COUVERTVEGETAL values ('%f', now())" % (m))
+cur.close()
+conn.commit()
+conn.close()
  
-cv2.waitKey()
+#cv2.waitKey()
