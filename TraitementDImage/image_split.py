@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
  
-src = cv2.imread('/Users/huojiaxi/ProjetBL/TraitementDImage/images-3.jpeg')
+src = cv2.imread('/Users/huojiaxi/ProjetBL/TraitementDImage/images-5.jpeg')
 cv2.imshow('src', src) 
  
 fsrc = np.array(src, dtype=np.float32) / 255.0
