@@ -6,8 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
  
-src = cv2.imread('/Users/huojiaxi/Desktop/images.jpeg')
-#cv2.imshow('src', src)
+src = cv2.imread('/Users/huojiaxi/ProjetBL/TraitementDImage/images.jpeg')
+cv2.imshow('src', src)
  
 fsrc = np.array(src, dtype=np.float32) / 255.0
 (b,g,r) = cv2.split(fsrc)
