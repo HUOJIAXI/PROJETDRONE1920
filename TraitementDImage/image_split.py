@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
  
-src = cv2.imread('/Users/huojiaxi/ProjetBL/TraitementDImage/images-2.jpeg')
+src = cv2.imread('/Users/huojiaxi/ProjetBL/TraitementDImage/images-3.jpeg')
 cv2.imshow('src', src) 
  
 fsrc = np.array(src, dtype=np.float32) / 255.0
@@ -40,6 +40,6 @@ for i in range(height):
 		if th3[i, j] == 255:
 			area += 1
 
-print('Couverture végétale:', np.round(area/(height*width)*100, 2),'%') 
+print('Couverture végétale:', np.round(area/(height*width)*100, 3),'%') 
  
 cv2.waitKey()
