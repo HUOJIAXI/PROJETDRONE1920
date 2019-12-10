@@ -22,6 +22,7 @@ def read_img(path=img_path):
 def green_style_v2(image):
     img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
     img=(img-np.min(img))/(np.max(img)-np.min(img))
+	img = cv2.GaussianBlur(img,(5,5),0) 
     cv2.imshow('green', img)
     cv2.waitKey()
     return img
