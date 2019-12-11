@@ -3,25 +3,31 @@
 
 ## 3 versions pour augmenter la précision
 
-## Algorithm:
-1. 
-def green_style_v2(image):
-    img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
-    img=(img-np.min(img))/(np.max(img)-np.min(img))
-    img = cv2.GaussianBlur(img,(5,5),0) 
-    cv2.imshow('green', img)
-    cv2.waitKey()
-    return img
+## Algorithme
 
-def man_seuillage(image,thresh=0.4):
-    dst = (image >= thresh) * 1.0
-    cv2.imshow('man_seuil', dst)
-    cv2.waitKey()
-    return dst
+> Extraire la partie verte
 
-def auto_seuillage(image):
-    thresh = filters.threshold_otsu(image)
-    dst = (image >= thresh) * 1.0
-    cv2.imshow('auto_seuil', dst)
-    cv2.waitKey()
-    return dst
+*  
+        def green_style_v2(image):
+            img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
+            img=(img-np.min(img))/(np.max(img)-np.min(img))
+            img = cv2.GaussianBlur(img,(5,5),0) 
+            cv2.imshow('green', img)
+            cv2.waitKey()
+            return img
+
+*       
+        def man_seuillage(image,thresh=0.4)：
+            dst = (image >= thresh) * 1.0
+            cv2.imshow('man_seuil', dst)
+            cv2.waitKey()
+            return dst
+   
+
+*
+        def auto_seuillage(image):  
+            thresh = filters.threshold_otsu(image)
+            dst = (image >= thresh) * 1.0
+            cv2.imshow('auto_seuil', dst)
+            cv2.waitKey()
+            return dst
