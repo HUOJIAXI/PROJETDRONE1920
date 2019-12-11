@@ -3,6 +3,8 @@
 
 ## 3 versions pour augmenter la précision
 
+## Algorithme
+
 > Extraire la partie verte
 
 *  
