@@ -17,6 +17,7 @@ def read_img(path=img_path):
 	#img=cv2.imread(path).astype(np.float)/255
 	cap = cv2.VideoCapture(0)
 	ret, src = cap.read(0)
+	cv2.imwrite('Couvervegetal.jpg', src)
  	img=src.astype(np.float)/255
 	img=cv2.resize(img,(480,320))
 	img = cv2.GaussianBlur(img,(11,11),0)
