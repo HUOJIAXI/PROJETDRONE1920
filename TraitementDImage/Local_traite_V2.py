@@ -11,14 +11,15 @@ import datetime
 from time import sleep
 import MySQLdb
 
-img_path='/Users/huojiaxi/Desktop/Unknown.jpeg'
+img_path='/Users/huojiaxi/Desktop/IMG_3217.jpg'
 
 def read_img(path=img_path):
-	# img=cv2.imread(path).astype(np.float)/255
+	#img=cv2.imread(path).astype(np.float)/255
 	cap = cv2.VideoCapture(0)
 	ret, src = cap.read(0)
  	img=src.astype(np.float)/255
 	img=cv2.resize(img,(480,320))
+	img = cv2.GaussianBlur(img,(11,11),0)
 	cv2.imshow('color',img)
 	cv2.waitKey()
 	return img+1/255
@@ -26,7 +27,6 @@ def read_img(path=img_path):
 def green_style_v2(image):
 	img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
 	img=(img-np.min(img))/(np.max(img)-np.min(img))
-	img = cv2.GaussianBlur(img,(5,5),0) 
 	cv2.imshow('green', img)
 	cv2.waitKey()
 	return img
