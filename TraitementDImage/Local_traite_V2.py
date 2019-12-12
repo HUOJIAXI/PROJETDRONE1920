@@ -92,13 +92,3 @@ if __name__=="__main__":
     lat,lon,alt = localisation()
     stockage(pourcent,lat,lon,alt) 
     print('Couverture végétale:', pourcent,'%','at the point:',lat, lon, alt) 
-
-
-
-
-
-
-
-
-
-
