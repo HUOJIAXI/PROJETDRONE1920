@@ -10,6 +10,8 @@ import sys
 import datetime
 from time import sleep
 import MySQLdb
+import serial
+import pynmea2
 
 img_path='/Users/huojiaxi/Desktop/IMG_3217.jpg'
 
@@ -55,7 +57,19 @@ def compter_pourcentage(image,area=0):
 	pourcent = np.round(area/(height*width)*100, 3)
 	return pourcent
 
-def stockage(pourcent):
+def localisation():
+	serialPort = serial.Serial("/dev/ttyAMA0", 9600, timeout=0.5)
+	str = serialPort.readline()
+	if str.find('GGA') > 0:
+		msg = pynmea2.parse(str)
+
+	latitude = msg.lat
+	longitude = msg.lon
+	altitude = msg.altitude 
+
+	return latitude, longitude, altitude
+
+def stockage(pourcent,lat,lon,alt):
     conn = MySQLdb.connect(
     host = '127.0.0.1',
     port = 3306,
@@ -65,7 +79,7 @@ def stockage(pourcent):
     )
     
     cur = conn.cursor()
-    cur.execute("insert into COUVERTVEGETAL values ('%f',now())" % (pourcent))
+    cur.execute("insert into COUVERTVEGETAL values ('%f','%f','%f','%f',now())" % (pourcent,lat,lon,alt))
     cur.close()
     conn.commit()
     conn.close()
@@ -74,6 +88,17 @@ if __name__=="__main__":
     img=read_img()
     g_img=green_style_v2(img)
     a_img=auto_seuillage(g_img)
-    pourcent=compter_pourcentage(a_img)
-    stockage(pourcent)
-    print('Couverture végétale:', pourcent,'%') 
+    pourcent=compter_pourcentage(a_img)      
+    lat,lon,alt = localisation()
+    stockage(pourcent,lat,lon,alt) 
+    print('Couverture végétale:', pourcent,'%','at the point:',lat, lon, alt) 
+
+
+
+
+
+
+
+
+
+
