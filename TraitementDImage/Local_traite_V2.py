@@ -17,35 +17,37 @@ img_path='/Users/huojiaxi/Desktop/IMG_3217.jpg'
 
 def read_img(path=img_path):
 	#img=cv2.imread(path).astype(np.float)/255
-    cap = cv2.VideoCapture(0)
+	cap = cv2.VideoCapture(0)
 	ret, src = cap.read(0)
 	cv2.imwrite('Couvervegetal.jpg', src)
  	img=src.astype(np.float)/255
 	img=cv2.resize(img,(480,320))
 	img = cv2.GaussianBlur(img,(11,11),0)
-	cv2.imshow('color',img)
-	cv2.waitKey()
+	#cv2.imshow('color',img)
+	#cv2.waitKey()
 	return img+1/255
 
 def green_style_v2(image):
 	img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
 	#img=(img-np.min(img))/(np.max(img)-np.min(img))
-	cv2.imshow('green', img)
-	cv2.waitKey()
+	#cv2.imshow('green', img)
+	#cv2.waitKey()
 	return img
 
 def man_seuillage(image,thresh=0.4):
+    
     dst = (image >= thresh) * 1.0
-    cv2.imshow('man_seuil', dst)
-    cv2.waitKey()
+    #cv2.imshow('man_seuil', dst)
+    #cv2.waitKey()
     return dst
 
 def auto_seuillage(image,auto_seuil=0.38):
     thresh = max(filters.threshold_otsu(image),auto_seuil)
-	dst = (image >= thresh) * 1.0
-	cv2.imshow('auto_seuil', dst)
-	cv2.waitKey()
-	return dst
+    dst = (image >= thresh) * 1.0
+   # cv2.imshow('auto_seuil', dst)
+   # cv2.imwrite('Couvervegetal——bin.jpg', dst)
+    #cv2.waitKey()
+    return dst
 
 def compter_pourcentage(image,area=0):
 	height, width = image.shape
@@ -58,16 +60,22 @@ def compter_pourcentage(image,area=0):
 	return pourcent
 
 def localisation():
-	serialPort = serial.Serial("/dev/ttyAMA0", 9600, timeout=0.5)
-	str = serialPort.readline()
-	if str.find('GGA') > 0:
-		msg = pynmea2.parse(str)
+    while True:
+	port="/dev/ttyAMA0"
+	ser = serial.Serial(port, 9600, timeout=0.5)
+	dataout = pynmea2.NMEAStreamReader()
+	newdata = ser.readline()
+    
+   # if newdata[0:6] == "$GPRMC":
 
-	lat = msg.latitude
-	lon = msg.longitude
-	alt = msg.altitude 
-
-	return lat, lon, alt
+	if newdata.find('GGA')>0: 
+	    newmsg=pynmea2.parse(newdata)
+	    lat = newmsg.latitude
+	    lng = newmsg.longitude
+	    alt = newmsg.altitude
+	    return lat, lng, alt
+	else:
+	    continue
 
 def stockage(pourcent,lat,lon,alt):
     conn = MySQLdb.connect(
