@@ -63,11 +63,11 @@ def localisation():
 	if str.find('GGA') > 0:
 		msg = pynmea2.parse(str)
 
-	latitude = msg.lat
-	longitude = msg.lon
-	altitude = msg.altitude 
+	lat = msg.latitude
+	lon = msg.longitude
+	alt = msg.altitude 
 
-	return latitude, longitude, altitude
+	return lat, lon, alt
 
 def stockage(pourcent,lat,lon,alt):
     conn = MySQLdb.connect(
