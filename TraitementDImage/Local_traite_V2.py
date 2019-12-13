@@ -29,7 +29,7 @@ def read_img(path=img_path):
 
 def green_style_v2(image):
 	img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
-	img=(img-np.min(img))/(np.max(img)-np.min(img))
+	#img=(img-np.min(img))/(np.max(img)-np.min(img))
 	cv2.imshow('green', img)
 	cv2.waitKey()
 	return img
@@ -40,8 +40,8 @@ def man_seuillage(image,thresh=0.4):
     cv2.waitKey()
     return dst
 
-def auto_seuillage(image):
-	thresh = filters.threshold_otsu(image)
+def auto_seuillage(image,auto_seuil=0.38):
+	thresh = max(filters.threshold_otsu(image),auto_seuil)
 	dst = (image >= thresh) * 1.0
 	cv2.imshow('auto_seuil', dst)
 	cv2.waitKey()
