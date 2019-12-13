@@ -17,7 +17,7 @@ img_path='/Users/huojiaxi/Desktop/IMG_3217.jpg'
 
 def read_img(path=img_path):
 	#img=cv2.imread(path).astype(np.float)/255
-	cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)
 	ret, src = cap.read(0)
 	cv2.imwrite('Couvervegetal.jpg', src)
  	img=src.astype(np.float)/255
@@ -41,7 +41,7 @@ def man_seuillage(image,thresh=0.4):
     return dst
 
 def auto_seuillage(image,auto_seuil=0.38):
-	thresh = max(filters.threshold_otsu(image),auto_seuil)
+    thresh = max(filters.threshold_otsu(image),auto_seuil)
 	dst = (image >= thresh) * 1.0
 	cv2.imshow('auto_seuil', dst)
 	cv2.waitKey()
