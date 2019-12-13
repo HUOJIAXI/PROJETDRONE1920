@@ -69,6 +69,14 @@ passwd = 'projet2019',
 db = 'PROJETDRONE'
 )
 
+#    conn = MySQLdb.connect(
+#    host = 'localhost',
+#    port = 3306,
+#    user = 'root',
+#    passwd = '',
+#    db = 'PROJETDRONE'
+#    )
+
 cur = conn.cursor()
 cur.execute("insert into COUVERTVEGETAL values ('%f', now())" % (m))
 cur.close()
