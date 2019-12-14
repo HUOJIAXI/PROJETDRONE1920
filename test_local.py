@@ -2,6 +2,7 @@ import serial
 import string
 import pynmea2
 import sys
+import time
 
 def main():
     while True:
