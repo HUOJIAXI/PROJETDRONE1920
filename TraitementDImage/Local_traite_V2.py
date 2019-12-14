@@ -44,9 +44,8 @@ def man_seuillage(image,thresh=0.4):
 def auto_seuillage(image,auto_seuil=0.38):
     thresh = max(filters.threshold_otsu(image),auto_seuil)
     dst = (image >= thresh) * 1.0
-   # cv2.imshow('auto_seuil', dst)
-   # cv2.imwrite('Couvervegetal——bin.jpg', dst)
-    #cv2.waitKey()
+    # cv2.imshow('auto_seuil', dst)
+    # cv2.waitKey()
     return dst
 
 def compter_pourcentage(image,area=0):
