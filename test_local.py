@@ -1,6 +1,7 @@
 import serial
 import string
 import pynmea2
+import sys
 
 def main():
     while True:
