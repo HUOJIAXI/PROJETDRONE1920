@@ -22,7 +22,7 @@ def main():
 
 
 if __name__ == '__main__':
-    while true:
+    while True:
         lat,lng,alt = main()
         gps = "Latitude=" + str(lat) + "and Longitude=" + str(lng)+"Altitude" + str(alt)
         print(gps)
