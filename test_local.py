@@ -26,4 +26,4 @@ if __name__ == '__main__':
         lat,lng,alt = main()
         gps = "Latitude=" + str(lat) + "and Longitude=" + str(lng)+"Altitude" + str(alt)
         print(gps)
-        sleep 1
+        sleep(1)
