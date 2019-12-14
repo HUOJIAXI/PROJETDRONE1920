@@ -30,6 +30,26 @@ import MySQLdb
 #import numpy as np 
 import sys
 import datetime
+import serial
+import pynmea2
+
+def localisation():
+    while True:
+		port="/dev/ttyAMA0"
+		ser = serial.Serial(port, 9600, timeout=0.5)
+		dataout = pynmea2.NMEAStreamReader()
+		newdata = ser.readline()
+    
+   # if newdata[0:6] == "$GPRMC":
+
+		if newdata.find('GGA')>0: 
+			newmsg=pynmea2.parse(newdata)
+			lat = newmsg.latitude
+			lng = newmsg.longitude
+			alt = newmsg.altitude
+			return lat, lng, alt
+		else:
+			continue
 
 # import Adafruit_AMG88xx.Adafruit_AMG88xx as AMG88
 
@@ -48,11 +68,13 @@ sensor = Adafruit_AMG88xx()
 
 #wait for it to boot
 sleep(.1)
+	    
 
 #while(1):
 time_stamp = datetime.datetime.now()
 
 indice = 0
+lat,lon,alt = localisation()
 a = sensor.readPixels()
 while indice < len(a):
 	if a[indice] == 0.0:
@@ -84,7 +106,7 @@ db = 'PROJETDRONE'
 )
 
 cur = conn.cursor()
-cur.execute("insert into TEMPMUR values ('%f', now())" % (b))
+cur.execute("insert into TEMPMUR values ('%f','%f','%f','%f', now())" % (b,lat,lon,alt))
 cur.close()
 conn.commit()
 conn.close()

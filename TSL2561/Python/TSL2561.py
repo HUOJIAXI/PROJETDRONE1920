@@ -10,9 +10,28 @@ import MySQLdb
 #import numpy as np 
 import sys
 import datetime
+import serial
+import pynmea2
 
 # Get I2C bus
+def localisation():
+    while True:
+		port="/dev/ttyAMA0"
+		ser = serial.Serial(port, 9600, timeout=0.5)
+		dataout = pynmea2.NMEAStreamReader()
+		newdata = ser.readline()
+    
+   # if newdata[0:6] == "$GPRMC":
 
+		if newdata.find('GGA')>0: 
+			newmsg=pynmea2.parse(newdata)
+			lat = newmsg.latitude
+			lng = newmsg.longitude
+			alt = newmsg.altitude
+			return lat, lng, alt
+		else:
+			continue
+	    
 bus = smbus.SMBus(1)
 
 # TSL2561 address, 0x39(57)
@@ -30,6 +49,8 @@ time.sleep(0.5)
 # Read data back from 0x0C(12) with command register, 0x80(128), 2 bytes
 # ch0 LSB, ch0 MSB
 while 1:
+	
+	lat,lon,alt = localisation()
 
 	data = bus.read_i2c_block_data(0x39, 0x0C | 0x80, 2)
 
@@ -52,7 +73,7 @@ while 1:
 	)
 
 	cur = conn.cursor()
-	cur.execute("insert into LUMINEUSE values ('%d', '%d', '%d', now())" % (ch0,ch1,(ch0 - ch1)))
+	cur.execute("insert into LUMINEUSE values ('%d', '%d', '%d','%f','%f','%f', now())" % (ch0,ch1,(ch0 - ch1),lat,lon,alt))
 	cur.close()
 	conn.commit()
 	conn.close()

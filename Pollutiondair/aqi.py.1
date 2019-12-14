@@ -7,6 +7,8 @@ import serial, struct, sys, time, json, subprocess
 import MySQLdb
 import sys
 import datetime
+import serial
+import pynmea2
 
 DEBUG = 0
 CMD_MODE = 2
@@ -109,6 +111,23 @@ def pub_mqtt(jsonrow):
     print('Publishing using:', cmd)
     with subprocess.Popen(cmd, shell=False, bufsize=0, stdin=subprocess.PIPE).stdin as f:
         json.dump(jsonrow, f)
+        
+def localisation():
+    while True:
+        port="/dev/ttyAMA0"
+        ser = serial.Serial(port, 9600, timeout=0.5)
+        dataout = pynmea2.NMEAStreamReader()
+        newdata = ser.readline()
+    
+   # if newdata[0:6] == "$GPRMC":
+
+        if newdata.find('GGA')>0: 
+            newmsg=pynmea2.parse(newdata)
+            lat = newmsg.latitude
+            lng = newmsg.longitude
+            alt = newmsg.altitude
+            return lat, lng, alt
+        else: continue
 
 
 if __name__ == "__main__":
@@ -118,6 +137,7 @@ if __name__ == "__main__":
     cmd_set_mode(MODE_QUERY);
     while True:
         cmd_set_sleep(0)
+        lat,lon,alt = localisation()
         for t in range(15):
             values = cmd_query_data();
             if values is not None and len(values) == 2:
@@ -131,7 +151,7 @@ if __name__ == "__main__":
               )
 
               cur = conn.cursor()
-              cur.execute("insert into AQI values ('%f','%f', now())" % (values[0],values[1]))
+              cur.execute("insert into AQI values ('%f','%f',now(), '%f', '%f','%f')" % (values[0],values[1],lat,lon,lat))
               cur.close()
               conn.commit()
               conn.close()
