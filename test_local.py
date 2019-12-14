@@ -25,6 +25,6 @@ def main():
 if __name__ == '__main__':
     while True:
         lat,lng,alt = main()
-        gps = "Latitude=" + str(lat) + "and Longitude=" + str(lng)+"Altitude" + str(alt)
+        gps = "Latitude= " + str(lat) + " and Longitude= " + str(lng)+" Altitude= " + str(alt)
         print(gps)
         time.sleep(1)
