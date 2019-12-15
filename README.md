@@ -19,7 +19,7 @@ Avant l'éxecution du script image.py, il convient de régler la valeur de RGB s
 
 Mise à jour le 15/12/2019
 
-HUOJIAXI
+Editeur: HUOJIAXI
 
 Les travaux de script shell étaient terminés. Grâce au scipt shell projet_test.sh, on pourra lancer les mesures automatiquement. Les mesures se commenceront automatiquement lors que le drone atteindra l'altitude prévue (On régle l'altitude de démarrage lors que l'on lance le shell)
 
