@@ -25,6 +25,8 @@ Auteur:HUO JIAXI
             cv2.imshow('green', img)
             cv2.waitKey()
             return img
+            
+> Réglage manuelle
 
 *       
         def man_seuillage(image,thresh=0.4)：# Réglage du seuil manuelle
@@ -33,6 +35,10 @@ Auteur:HUO JIAXI
             cv2.waitKey()
             return dst
    
+
+
+> Réglage automatique
+
 
 *
         def auto_seuillage(image,auto_seuil=0.38):  
