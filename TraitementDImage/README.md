@@ -1,7 +1,7 @@
 # Traitement d'image
 ## Les images prises par la capteur de caméra sur le drone devraient être traitées en vue de trouver le pourcentage de couvert végétal.
 
-Editeur:HUO JIAXI
+Auteur:HUO JIAXI
 
 ## 3 versions pour augmenter la précision
 1. image.py : Régler le seuil manuellement, pas précis
