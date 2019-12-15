@@ -1,5 +1,11 @@
 # PROJETDRONE1920
+=============================================================================
 
+Mise à jour le 01/12/2019
+
+Auteur: HUOJIAXI
+
+=============================================================================
 Les scripts concernant:
 1. Capteur thermique: Adafruit_AMG8833_python
 2. Capteur couvert végétale: Caméra 
@@ -20,6 +26,8 @@ Avant l'éxecution du script image.py, il convient de régler la valeur de RGB s
 Mise à jour le 15/12/2019
 
 Auteur: HUOJIAXI
+
+==============================================================================
 
 Les travaux de script shell étaient terminés. Grâce au scipt shell projet_test.sh, on pourra lancer les mesures automatiquement. Les mesures se commenceront automatiquement lors que le drone atteindra l'altitude prévue (On régle l'altitude de démarrage lors que l'on lance le shell)
 
