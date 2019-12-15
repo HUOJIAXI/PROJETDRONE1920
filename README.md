@@ -16,6 +16,7 @@ Les données sont bien stockées dans la base de données...
 Avant l'éxecution du script image.py, il convient de régler la valeur de RGB selon la situation réelle (La première image)
 
 ==============================================================================
+
 Mise à jour le 15/12/2019
 
 HUOJIAXI
