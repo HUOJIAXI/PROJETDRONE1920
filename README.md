@@ -6,6 +6,7 @@ Mise à jour le 01/12/2019
 Auteur: HUOJIAXI
 
 =============================================================================
+
 Les scripts concernant:
 1. Capteur thermique: Adafruit_AMG8833_python
 2. Capteur couvert végétale: Caméra 
