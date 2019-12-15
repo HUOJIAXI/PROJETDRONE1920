@@ -25,4 +25,6 @@ Les travaux de script shell étaient terminés. Grâce au scipt shell projet_tes
 
 Une fois une mesure est prise, la localisation actuelle va être stockée avec le resultat de mesure dans la base de donnée.
 
-La mise en place de QGIS était terminée. Les données de mesures peuvent être prises sous le format txt de base de donnée. 
+La mise en place de QGIS était terminée. Les données de mesures peuvent être prises sous le format txt de base de donnée.
+
+https://github.com/HUOJIAXI/PROJETDRONE1920.git/raw/master/Exemple_QGIS.png 
