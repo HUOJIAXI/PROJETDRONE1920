@@ -27,4 +27,4 @@ Une fois une mesure est prise, la localisation actuelle va être stockée avec l
 
 La mise en place de QGIS était terminée. Les données de mesures peuvent être prises sous le format txt de base de donnée.
 
-!Exemple de la mise en place de QGIS (https://github.com/HUOJIAXI/PROJETDRONE1920/blob/master/Exemple_QGIS.png)
+![Exemple de la mise en place de QGIS](https://github.com/HUOJIAXI/PROJETDRONE1920/blob/master/Exemple_QGIS.png)
