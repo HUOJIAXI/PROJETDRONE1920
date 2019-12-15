@@ -13,8 +13,15 @@ Je préfère appliquer le image_split.py afin de détecter la couverture végét
 
 Les données sont bien stockées dans la base de données...
 
-Il manque:
-1. Capteur GPS
-2. Script shell
+Avant l'éxecution du script image.py, il convient de régler la valeur de RGB selon la situation réelle (La première image)
 
-Avant l'éxecution du script image.py, il convient de régler la valeur de RGB selon la situation réelle (La première image) 
+==============================================================================
+Mise à jour le 15/12/2019
+
+HUOJIAXI
+
+Les travaux de script shell étaient terminés. Grâce au scipt shell projet_test.sh, on pourra lancer les mesures automatiquement. Les mesures se commenceront automatiquement lors que le drone atteindra l'altitude prévue (On régle l'altitude de démarrage lors que l'on lance le shell)
+
+Une fois une mesure est prise, la localisation actuelle va être stockée avec le resultat de mesure dans la base de donnée.
+
+La mise en place de QGIS était terminée. Les données de mesures peuvent être prises sous le format txt de base de donnée. 
