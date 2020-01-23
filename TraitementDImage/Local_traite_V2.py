@@ -45,6 +45,7 @@ def auto_seuillage(image,auto_seuil=0.38):
     thresh = max(filters.threshold_otsu(image),auto_seuil)
     dst = (image >= thresh) * 1.0
     # cv2.imshow('auto_seuil', dst)
+    cv2.imwrite('imagetraite.jpg',dst)
     # cv2.waitKey()
     return dst
 
@@ -98,4 +99,4 @@ if __name__=="__main__":
     pourcent=compter_pourcentage(a_img)      
     lat,lon,alt = localisation()
     stockage(pourcent,lat,lon,alt) 
-    print('Couverture végétale:', pourcent,'%','at the point:',lat, lon, alt) 
+    print('Couverture vegetale:', pourcent,'%','at the point:',lat, lon, alt) 
