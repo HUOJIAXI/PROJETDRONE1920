@@ -30,6 +30,7 @@ def read_img(path=img_path):
 def green_style_v2(image):
 	img=image[:,:,1]/(image[:,:,1]+image[:,:,2]+image[:,:,0])
 	#img=(img-np.min(img))/(np.max(img)-np.min(img))
+	#cv2.imwrite('traite.png',img)
 	#cv2.imshow('green', img)
 	#cv2.waitKey()
 	return img
@@ -37,6 +38,7 @@ def green_style_v2(image):
 def man_seuillage(image,thresh=0.4):
     
     dst = (image >= thresh) * 1.0
+    #cv2.imwrite('imagesessai.jpg',dst)
     #cv2.imshow('man_seuil', dst)
     #cv2.waitKey()
     return dst
@@ -45,11 +47,13 @@ def auto_seuillage(image,auto_seuil=0.38):
     thresh = max(filters.threshold_otsu(image),auto_seuil)
     dst = (image >= thresh) * 1.0
     # cv2.imshow('auto_seuil', dst)
-    cv2.imwrite('imagetraite.jpg',dst)
+    #cv2.imwrite('imagetraite.png',dst)
     # cv2.waitKey()
     return dst
 
 def compter_pourcentage(image,area=0):
+	image_origin=image*255;
+	cv2.imwrite('imagetraite.png',image_origin)
 	height, width = image.shape
 	for i in range(height):
 		for j in range(width):
@@ -96,6 +100,7 @@ if __name__=="__main__":
     img=read_img()
     g_img=green_style_v2(img)
     a_img=auto_seuillage(g_img)
+    m_img=man_seuillage(g_img)
     pourcent=compter_pourcentage(a_img)      
     lat,lon,alt = localisation()
     stockage(pourcent,lat,lon,alt) 

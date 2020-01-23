@@ -10,9 +10,7 @@ import datetime
 from time import sleep
 import MySQLdb
  
-#src = cv2.imread('/home/pi/projetdronetech/TraitementDImage/images-6.jpeg')
-cap = cv2.VideoCapture(0)
-ret, src = cap.read(0)
+src = cv2.imread('/home/pi/projetdronetech/TraitementDImage/Couvervegetal.jpg')
 #print (ret)
 #cv2.imwrite("./photo.png", src)
 #cv2.imshow('src', src) 
