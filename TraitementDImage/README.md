@@ -1,6 +1,8 @@
 # Traitement d'image
 ## Les images prises par la capteur de caméra sur le drone devraient être traitées en vue de trouver le pourcentage de couvert végétal.
 
+![image](https://github.com/HUOJIAXI/PROJETDRONE1920/blob/master/TraitementDImage/resultat_couvert_vegetale.png)
+
 ==================
 
 Mise à jour le 15/12/2019
