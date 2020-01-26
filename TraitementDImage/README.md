@@ -13,6 +13,8 @@ Auteur:HUO JIAXI
 2. image_split.py : détecter mieux la couverture végétale que image.py
 3. Local_trait_V2.py : La reglage du seuil est automatique et précise, grâce au nouveau algorithme
 
+![image](TraitementDImage/Couvervegetal.jpg)
+
 ## Algorithme
 
 > Extraire la partie verte
