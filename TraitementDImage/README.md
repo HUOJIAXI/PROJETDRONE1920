@@ -16,7 +16,7 @@ Auteur:HUO JIAXI
 3. Local_trait_V2.py : La reglage du seuil est automatique et précise, grâce au nouveau algorithme
 
 > Image d'origine
-![image](https://github.com/HUOJIAXI/PROJETDRONE1920/raw/master/TraitementDImage/imagedorigine.jpg)
+![image](https://github.com/HUOJIAXI/PROJETDRONE1920/raw/master/TraitementDImage/Imagedorigine.jpg)
 
 > Image après le traitement
 ![image](https://github.com/HUOJIAXI/PROJETDRONE1920/raw/master/TraitementDImage/imagetraitant.png)
