@@ -137,7 +137,10 @@ if __name__ == "__main__":
     cmd_set_mode(MODE_QUERY);
     while True:
         cmd_set_sleep(0)
-        lat,lon,alt = localisation()
+        try:      
+        	lat,lon,alt = localisation()
+        except pynmea2.nmea.ChecksumError:
+        	lat,lon,alt = localisation()
         for t in range(15):
             values = cmd_query_data();
             if values is not None and len(values) == 2:

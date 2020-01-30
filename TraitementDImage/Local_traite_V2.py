@@ -101,7 +101,10 @@ if __name__=="__main__":
     g_img=green_style_v2(img)
     a_img=auto_seuillage(g_img)
     m_img=man_seuillage(g_img)
-    pourcent=compter_pourcentage(a_img)      
-    lat,lon,alt = localisation()
+    pourcent=compter_pourcentage(a_img)
+    try:      
+   	 lat,lon,alt = localisation()
+    except pynmea2.nmea.ChecksumError:
+   	 lat,lon,alt = localisation()
     stockage(pourcent,lat,lon,alt) 
     print('Couverture vegetale:', pourcent,'%','at the point:',lat, lon, alt) 

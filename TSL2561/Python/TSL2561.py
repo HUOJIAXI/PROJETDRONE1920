@@ -49,8 +49,11 @@ time.sleep(0.5)
 # Read data back from 0x0C(12) with command register, 0x80(128), 2 bytes
 # ch0 LSB, ch0 MSB
 while 1:
-	
-	lat,lon,alt = localisation()
+	try:      
+        	lat,lon,alt = localisation()
+	except pynmea2.nmea.ChecksumError:
+        	lat,lon,alt = localisation()
+
 
 	data = bus.read_i2c_block_data(0x39, 0x0C | 0x80, 2)
 

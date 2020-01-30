@@ -74,7 +74,10 @@ sleep(.1)
 time_stamp = datetime.datetime.now()
 
 indice = 0
-lat,lon,alt = localisation()
+try:      
+         lat,lon,alt = localisation()
+except pynmea2.nmea.ChecksumError:
+         lat,lon,alt = localisation()
 a = sensor.readPixels()
 while indice < len(a):
 	if a[indice] == 0.0:
@@ -88,7 +91,7 @@ b = sum(a)/len(a)
 #	b = b - b.min()
 #	init = b.tolist()
 #	print(init)
-fhandle = open('donnee_test.txt', 'a+w');
+fhandle = open('/home/pi/projetdronetech/Adafruit_AMG88xx_python/examples/Donneetest/donnee_test.txt', 'a+w');
 stdo = sys.stdout
 sys.stdout=fhandle
 print time_stamp.strftime('%Y.%m.%d-%H:%M:%S')
