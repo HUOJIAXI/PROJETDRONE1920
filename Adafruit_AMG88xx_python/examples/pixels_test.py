@@ -88,7 +88,7 @@ b = sum(a)/len(a)
 #	b = b - b.min()
 #	init = b.tolist()
 #	print(init)
-fhandle = open('donnee2.txt', 'a+w');
+fhandle = open('donnee_test.txt', 'a+w');
 stdo = sys.stdout
 sys.stdout=fhandle
 print time_stamp.strftime('%Y.%m.%d-%H:%M:%S')
